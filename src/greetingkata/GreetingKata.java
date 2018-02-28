@@ -4,7 +4,19 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 		
-		System.out.println(greet("morning", "Sasha") + "\n" + greet("easter", "Pacal"));
+		System.out.println(border(greet("easter", "Sasha"), 80));
+		
+	}
+	
+	public static String border(String message, int size) {
+		
+		String border = "";
+		
+		for(int i = 0; i < size; i++) {
+			border += "*";
+		}
+		
+		return border + "\n" + message + "\n" + border;
 		
 	}
 	
