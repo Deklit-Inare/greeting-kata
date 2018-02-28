@@ -16,7 +16,13 @@ public class GreetingKata {
 			border += "*";
 		}
 
-		return border + "\n" + message + "\n" + border;
+		String spaces = "";
+		
+		for(int i = 0; i < size - message.length() - 3; i++) {
+			spaces += " ";
+		}
+		
+		return border + "\n* " + message + spaces + "*\n" + border;
 
 	}
 
