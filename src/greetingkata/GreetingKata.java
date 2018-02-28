@@ -4,7 +4,7 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 
-		System.out.println(border(greet("easter"), 80));
+		System.out.println(border(greet("easter", "Sasha"), 80));
 
 	}
 
@@ -16,13 +16,19 @@ public class GreetingKata {
 			border += "*";
 		}
 
-		String spaces = "";
+		String spacesBefore = "";
 		
-		for(int i = 0; i < size - message.length() - 3; i++) {
-			spaces += " ";
+		for(int i = 0; i < (size - message.length() - 3)/2; i++) {
+			spacesBefore += " ";
 		}
 		
-		return border + "\n* " + message + spaces + "*\n" + border;
+		String spacesAfter = "";
+		
+		for(int i = 0; i < size - message.length() - spacesBefore.length() - 3; i++) {
+			spacesAfter += " ";
+		}
+		
+		return border + "\n* " + spacesBefore + message + spacesAfter + "*\n" + border;
 
 	}
 
