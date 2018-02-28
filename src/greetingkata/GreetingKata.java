@@ -5,7 +5,10 @@ public class GreetingKata {
 	public static void main(String[] args) {
 
 		String message = greet("szulinap", "kedves Sasha");
-		int thickness = 2;
+
+		// int thickness = 2;
+		int thickness = borderChars.length;
+
 		int spaces = 3;
 
 		int width = message.length() + 2 * (spaces + thickness);
@@ -13,12 +16,57 @@ public class GreetingKata {
 		width = Math.max(80, width);
 
 		String bordered = border(message, width, thickness);
+		bordered = replaceBorderCharacters(bordered);
 
 		System.out.println(bordered);
 
 	}
 
-	public static char borderChar = '#';
+	public static char borderChar = '|';
+	public static char[] borderChars = { '*', '~'};
+
+	public static String replaceBorderCharacters(String table) {
+
+		String[] lines = table.split("\n");
+		int width = lines[0].length();
+		int height = lines.length;
+
+		char[][] newTable = new char[width][height];
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				newTable[j][i] = lines[i].charAt(j);
+			}
+		}
+
+		for (int bc = 0; bc < borderChars.length; bc++) {
+
+			int toI = width - bc;
+			int toJ = height - bc;
+
+			for (int i = bc; i < toI; i++) {
+				for (int j = bc; j < toJ; j++) {
+
+					if (i == bc || j == bc || i == toI-1 || j == toJ-1) {
+						newTable[i][j] = borderChars[bc];
+					}
+
+				}
+			}
+		}
+
+		String outBorder = "";
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				outBorder += newTable[j][i];
+			}
+			outBorder += "\n";
+		}
+
+		return outBorder.substring(0, outBorder.length() - 1);
+
+	}
 
 	public static String border(String message, int size, int thickness) {
 
@@ -43,7 +91,7 @@ public class GreetingKata {
 			out += border + "\n";
 		}
 
-		return out;
+		return out.substring(0, out.length() - 1);
 		// return border + "\n" + emptyLine + "\n" + borderChar + " " + spacesBefore +
 		// message + spacesAfter + borderChar + "\n" + emptyLine + "\n" + border;
 
@@ -103,7 +151,7 @@ public class GreetingKata {
 		case "easter":
 			greeting = "Happy Easter";
 			break;
-			
+
 		case "szulinap":
 			greeting = "Nagyon nagyon boldog szuletesnapot kivanok sok sok szeretettel";
 			break;
