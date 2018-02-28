@@ -4,13 +4,28 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 		
-		System.out.println(greet("Sasha") + "\n" + greet("Pacal"));
+		System.out.println(greet("morning", "Sasha") + "\n" + greet("easter", "Pacal"));
 		
 	}
 	
-	public static String greet(String name) {
+	public static String greet(String greeting, String name) {
 		
-		return String.format("Good morning, %s!", name);
+		switch(greeting) {
+		
+		case "morning":
+			greeting = "Good morning";
+			break;
+			
+		case "easter":
+			greeting = "Happy Easter";
+			break;
+			
+		default:
+			break;
+		
+		}
+		
+		return String.format("%s, %s!", greeting, name);
 		
 	}
 
