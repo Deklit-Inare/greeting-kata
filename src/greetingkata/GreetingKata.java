@@ -7,20 +7,22 @@ public class GreetingKata {
 		System.out.println(border(greet("easter", "Sasha"), 80));
 
 	}
+	
+	public static char borderChar = '#';
 
 	public static String border(String message, int size) {
 
 		String border = "";
 
 		for (int i = 0; i < size; i++) {
-			border += "*";
+			border += borderChar;
 		}
 
 		String spacesBefore = spacesBefore(message, size);
 		String spacesAfter = spacesAfter(message, size, spacesBefore);
 		String emptyLine = getEmptyLine(size);
 
-		return border + "\n" + emptyLine + "\n* " + spacesBefore + message + spacesAfter + "*\n" + emptyLine + "\n" + border;
+		return border + "\n" + emptyLine + "\n" + borderChar + " " + spacesBefore + message + spacesAfter + borderChar + "\n" + emptyLine + "\n" + border;
 
 	}
 
@@ -43,11 +45,11 @@ public class GreetingKata {
 	}
 
 	private static String getEmptyLine(int size) {
-		String emptyLine = "*";
+		String emptyLine = Character.toString(borderChar);
 		for (int i = 0; i < size - 2; i++) {
 			emptyLine += " ";
 		}
-		return emptyLine + "*";
+		return emptyLine + borderChar;
 	}
 
 	public static String greet(String greeting) {
