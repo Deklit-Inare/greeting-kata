@@ -4,8 +4,16 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 
-		System.out.println(border(greet("easter", "Sasha"), 80, 2));
+		String message = greet("easter", "Sasha");
+		int thickness = 2;
+		int spaces = 3;
+		
+		int width = message.length() + 2 * (spaces + thickness);
 
+		String bordered = border(message, width, thickness);
+
+		System.out.println(bordered);
+		
 	}
 	
 	public static char borderChar = '#';
