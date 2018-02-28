@@ -4,7 +4,7 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 
-		String message = greet("easter", "tr");
+		String message = greet("szulinap", "kedves Sasha");
 		int thickness = 2;
 		int spaces = 3;
 
@@ -102,6 +102,10 @@ public class GreetingKata {
 
 		case "easter":
 			greeting = "Happy Easter";
+			break;
+			
+		case "szulinap":
+			greeting = "Nagyon nagyon boldog szuletesnapot kivanok sok sok szeretettel";
 			break;
 
 		default:
