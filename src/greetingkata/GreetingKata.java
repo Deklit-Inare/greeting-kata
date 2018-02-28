@@ -4,18 +4,20 @@ public class GreetingKata {
 
 	public static void main(String[] args) {
 
-		String message = greet("easter", "Sasha");
+		String message = greet("easter", "tr");
 		int thickness = 2;
 		int spaces = 3;
-		
+
 		int width = message.length() + 2 * (spaces + thickness);
+
+		width = Math.max(80, width);
 
 		String bordered = border(message, width, thickness);
 
 		System.out.println(bordered);
-		
+
 	}
-	
+
 	public static char borderChar = '#';
 
 	public static String border(String message, int size, int thickness) {
@@ -26,32 +28,31 @@ public class GreetingKata {
 		String spacesAfter = spacesAfter(message, size, thickness, spacesBefore);
 		String emptyLine = getEmptyLine(size, thickness);
 		String sideBorder = sideBorder(thickness);
-		
+
 		String out = "";
-		
-		for(int i = 0; i < thickness; i++) {
+
+		for (int i = 0; i < thickness; i++) {
 			out += border + "\n";
 		}
 		out += emptyLine + "\n";
 
 		out += sideBorder + spacesBefore + message + spacesAfter + sideBorder + "\n";
-		
-		
+
 		out += emptyLine + "\n";
-		for(int i = 0; i < thickness; i++) {
+		for (int i = 0; i < thickness; i++) {
 			out += border + "\n";
 		}
-		
-		
+
 		return out;
-		//return border + "\n" + emptyLine + "\n" + borderChar + " " + spacesBefore + message + spacesAfter + borderChar + "\n" + emptyLine + "\n" + border;
+		// return border + "\n" + emptyLine + "\n" + borderChar + " " + spacesBefore +
+		// message + spacesAfter + borderChar + "\n" + emptyLine + "\n" + border;
 
 	}
 
 	private static String spacesBefore(String message, int size, int thickness) {
 		String spacesBefore = "";
 
-		for (int i = 0; i < size/2 - thickness - message.length()/2; i++) {
+		for (int i = 0; i < size / 2 - thickness - message.length() / 2; i++) {
 			spacesBefore += " ";
 		}
 		return spacesBefore;
@@ -60,7 +61,7 @@ public class GreetingKata {
 	private static String spacesAfter(String message, int size, int thickness, String spacesBefore) {
 		String spacesAfter = "";
 
-		for (int i = 0; i < size - message.length() - spacesBefore.length() - 2*thickness; i++) {
+		for (int i = 0; i < size - message.length() - spacesBefore.length() - 2 * thickness; i++) {
 			spacesAfter += " ";
 		}
 		return spacesAfter;
@@ -68,9 +69,9 @@ public class GreetingKata {
 
 	private static String getEmptyLine(int size, int thickness) {
 		String border = sideBorder(thickness);
-		
+
 		String emptyLine = "";
-		
+
 		for (int i = 0; i < size - 2 * thickness; i++) {
 			emptyLine += " ";
 		}
@@ -79,7 +80,7 @@ public class GreetingKata {
 
 	private static String sideBorder(int thickness) {
 		String border = "";
-		for(int i = 0; i < thickness; i++) {
+		for (int i = 0; i < thickness; i++) {
 			border += borderChar;
 		}
 		return border;
