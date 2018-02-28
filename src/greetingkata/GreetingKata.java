@@ -16,20 +16,38 @@ public class GreetingKata {
 			border += "*";
 		}
 
+		String spacesBefore = spacesBefore(message, size);
+		String spacesAfter = spacesAfter(message, size, spacesBefore);
+		String emptyLine = getEmptyLine(size);
+
+		return border + "\n" + emptyLine + "\n* " + spacesBefore + message + spacesAfter + "*\n" + emptyLine + "\n" + border;
+
+	}
+
+	private static String spacesBefore(String message, int size) {
 		String spacesBefore = "";
-		
-		for(int i = 0; i < (size - message.length() - 3)/2; i++) {
+
+		for (int i = 0; i < (size - message.length() - 3) / 2; i++) {
 			spacesBefore += " ";
 		}
-		
+		return spacesBefore;
+	}
+
+	private static String spacesAfter(String message, int size, String spacesBefore) {
 		String spacesAfter = "";
-		
-		for(int i = 0; i < size - message.length() - spacesBefore.length() - 3; i++) {
+
+		for (int i = 0; i < size - message.length() - spacesBefore.length() - 3; i++) {
 			spacesAfter += " ";
 		}
-		
-		return border + "\n* " + spacesBefore + message + spacesAfter + "*\n" + border;
+		return spacesAfter;
+	}
 
+	private static String getEmptyLine(int size) {
+		String emptyLine = "*";
+		for (int i = 0; i < size - 2; i++) {
+			emptyLine += " ";
+		}
+		return emptyLine + "*";
 	}
 
 	public static String greet(String greeting) {
